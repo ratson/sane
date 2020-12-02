@@ -1,12 +1,9 @@
 {
-  "name": "sane",
+  "name": "@frat/sane",
   "version": "4.1.0",
   "description": "Sane aims to be fast, small, and reliable file system watcher.",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/amasad/sane"
-  },
+  "repository": "ratson/sane",
   "files": [
     "src",
     "index.js"
@@ -48,10 +45,9 @@
   "engines": {
     "node": ">= 10.*"
   },
-  "bugs": {
-    "url": "https://github.com/amasad/sane/issues"
+  "publishConfig": {
+    "access": "public"
   },
-  "homepage": "https://github.com/amasad/sane",
   "mocha": {
     "timeout": 5000
   }
