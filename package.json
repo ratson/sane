@@ -28,28 +28,31 @@
   "author": "amasad",
   "license": "MIT",
   "dependencies": {
-    "@cnakazawa/watch": "^1.0.3",
-    "anymatch": "^2.0.0",
+    "@cnakazawa/watch": "^1.0.4",
+    "anymatch": "^3.1.1",
     "capture-exit": "^2.0.0",
-    "exec-sh": "^0.3.2",
-    "execa": "^1.0.0",
-    "fb-watchman": "^2.0.0",
-    "micromatch": "^3.1.4",
-    "minimist": "^1.1.1",
-    "walker": "~1.0.5"
+    "exec-sh": "^0.3.4",
+    "execa": "^4.1.0",
+    "fb-watchman": "^2.0.1",
+    "micromatch": "^4.0.2",
+    "minimist": "^1.2.5",
+    "walker": "~1.0.7"
   },
   "devDependencies": {
     "eslint": "^5.15.1",
-    "mocha": "^6.0.2",
+    "mocha": "^8.2.1",
     "prettier": "^1.16.4",
-    "rimraf": "~2.6.3",
-    "tmp": "0.0.33"
+    "rimraf": "~3.0.2",
+    "tmp": "0.2.1"
   },
   "engines": {
-    "node": "6.* || 8.* || >= 10.*"
+    "node": ">= 10.*"
   },
   "bugs": {
     "url": "https://github.com/amasad/sane/issues"
   },
-  "homepage": "https://github.com/amasad/sane"
+  "homepage": "https://github.com/amasad/sane",
+  "mocha": {
+    "timeout": 5000
+  }
 }
