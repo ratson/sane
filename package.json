@@ -1,6 +1,6 @@
 {
   "name": "@frat/sane",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "Sane aims to be fast, small, and reliable file system watcher.",
   "main": "index.js",
   "repository": "ratson/sane",
@@ -13,7 +13,9 @@
     "test:debug": "mocha debug --bail",
     "format": "prettier --trailing-comma es5 --single-quote --write index.js 'src/**/*.js' 'test/**/*.js'"
   },
-  "bin": "./src/cli.js",
+  "bin": {
+    "sane": "src/cli.js"
+  },
   "keywords": [
     "watch",
     "file",
