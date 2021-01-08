@@ -19,7 +19,7 @@ Sane aims to be fast, small, and reliable file system watcher. It does that by:
 ## Install
 
 ```
-$ npm install sane
+$ npm install @frat/sane
 ```
 
 ## How to choose a mode
