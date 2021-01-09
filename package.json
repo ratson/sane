@@ -6,7 +6,8 @@
   "repository": "ratson/sane",
   "files": [
     "src",
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "scripts": {
     "test": "npm run format && eslint src/ test/ index.js && mocha --bail test/test.js && mocha --bail test/utils-test.js && mocha --bail 'test/watchexec_*-test.js'",
