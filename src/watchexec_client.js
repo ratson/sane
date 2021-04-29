@@ -12,7 +12,7 @@ const { EOL } = require('os');
 
 function withPrefixes(prefixes) {
   return function withPrefix(arr, i) {
-    return arr.map(str => {
+    return arr.map((str) => {
       return `${prefixes[i]} ${str}`;
     });
   };
@@ -41,12 +41,12 @@ function extractChanges(context) {
     .filter(Boolean);
 
   function toFullPath(arr) {
-    return arr.map(path => (WATCHEXEC_COMMON_PATH || '') + path);
+    return arr.map((path) => (WATCHEXEC_COMMON_PATH || '') + path);
   }
 
   let message = events
     .filter(Boolean)
-    .map(str => str.split(':'))
+    .map((str) => str.split(':'))
     .map(toFullPath)
     .map(withPrefixes(currentPrefixes))
     .reduce((e, memo) => memo.concat(e), [])

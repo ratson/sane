@@ -108,7 +108,7 @@ module.exports = class PollWatcher extends EventEmitter {
    */
 
   close(callback) {
-    Object.keys(this.watched).forEach(filepath => fs.unwatchFile(filepath));
+    Object.keys(this.watched).forEach((filepath) => fs.unwatchFile(filepath));
     this.removeAllListeners();
     if (typeof callback === 'function') {
       setImmediate(callback.bind(null, null, true));

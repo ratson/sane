@@ -61,7 +61,7 @@ PluginTestWatcher.prototype.__proto__ = EventEmitter.prototype;
  * @private
  */
 
-PluginTestWatcher.prototype.filter = function(filepath, stat) {
+PluginTestWatcher.prototype.filter = function (filepath, stat) {
   return (
     stat.isDirectory() ||
     common.isFileIncluded(
@@ -81,7 +81,7 @@ PluginTestWatcher.prototype.filter = function(filepath, stat) {
  * @public
  */
 
-PluginTestWatcher.prototype.init = function(monitor) {
+PluginTestWatcher.prototype.init = function (monitor) {
   this.watched = monitor.files;
   monitor.on('changed', this.emitEvent.bind(this, CHANGE_EVENT));
   monitor.on('removed', this.emitEvent.bind(this, DELETE_EVENT));
@@ -100,7 +100,7 @@ PluginTestWatcher.prototype.init = function(monitor) {
  * @public
  */
 
-PluginTestWatcher.prototype.emitEvent = function(type, file, stat) {
+PluginTestWatcher.prototype.emitEvent = function (type, file, stat) {
   file = path.relative(this.root, file);
 
   if (type === DELETE_EVENT) {
@@ -118,8 +118,8 @@ PluginTestWatcher.prototype.emitEvent = function(type, file, stat) {
  * @public
  */
 
-PluginTestWatcher.prototype.close = function(callback) {
-  Object.keys(this.watched).forEach(function(filepath) {
+PluginTestWatcher.prototype.close = function (callback) {
+  Object.keys(this.watched).forEach(function (filepath) {
     fs.unwatchFile(filepath);
   });
   this.removeAllListeners();

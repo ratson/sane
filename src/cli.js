@@ -49,7 +49,7 @@ if (watchmanPath) {
 let wait = false;
 const watcher = sane(dir, opts);
 
-watcher.on('ready', function() {
+watcher.on('ready', function () {
   if (!quiet) {
     console.log('Watching: ', dir + '/' + (opts.glob || ''));
   }
@@ -58,7 +58,7 @@ watcher.on('ready', function() {
   }
 });
 
-watcher.on('change', function(filepath) {
+watcher.on('change', function (filepath) {
   if (wait) {
     return;
   }
@@ -69,7 +69,7 @@ watcher.on('change', function(filepath) {
 
   if (waitTime > 0) {
     wait = true;
-    setTimeout(function() {
+    setTimeout(function () {
       wait = false;
     }, waitTime * 1000);
   }

@@ -21,16 +21,16 @@ class WatcherMock extends EventEmitter {
   }
 }
 
-describe('Watchexec handler', function() {
-  beforeEach(function() {
+describe('Watchexec handler', function () {
+  beforeEach(function () {
     this.mock = new WatcherMock();
-    this.makeBuffer = function(str) {
+    this.makeBuffer = function (str) {
       return Buffer.from(str || '', 'utf8');
     };
   });
 
-  it('does not send events on empty strings', function() {
-    this.mock.emitEvent = function() {
+  it('does not send events on empty strings', function () {
+    this.mock.emitEvent = function () {
       assert.fail('it should not be called never called');
     };
     this.mock.receive(this.makeBuffer(''));
@@ -42,8 +42,8 @@ describe('Watchexec handler', function() {
     );
   });
 
-  it('does not send events on malformed strings', function() {
-    this.mock.emitEvent = function() {
+  it('does not send events on malformed strings', function () {
+    this.mock.emitEvent = function () {
       assert.fail('it should not be called never called');
     };
     this.mock.receive(this.makeBuffer('sorry not sorry:'));
@@ -55,8 +55,8 @@ describe('Watchexec handler', function() {
     );
   });
 
-  it('does not send events on malformed strings', function() {
-    this.mock.emitEvent = function() {
+  it('does not send events on malformed strings', function () {
+    this.mock.emitEvent = function () {
       assert.fail('it should not be called never called');
     };
     this.mock.receive(this.makeBuffer('sorry not sorry:'));
@@ -68,9 +68,9 @@ describe('Watchexec handler', function() {
     );
   });
 
-  it('sends the correct event on file creation', function() {
+  it('sends the correct event on file creation', function () {
     const mock = this.mock;
-    mock.emitEvent = function(type, path, stat) {
+    mock.emitEvent = function (type, path, stat) {
       assert.equal(type, 'add');
       assert.equal(path, relative(mock.root, __filename));
       assert.ok(stat instanceof Stats);
@@ -78,9 +78,9 @@ describe('Watchexec handler', function() {
     this.mock.receive(this.makeBuffer(`create ${__filename}`));
   });
 
-  it('sends the correct event on file update', function() {
+  it('sends the correct event on file update', function () {
     const mock = this.mock;
-    mock.emitEvent = function(type, path, stat) {
+    mock.emitEvent = function (type, path, stat) {
       assert.equal(type, 'change');
       assert.equal(path, relative(mock.root, __filename));
       assert.ok(stat instanceof Stats);
@@ -88,9 +88,9 @@ describe('Watchexec handler', function() {
     this.mock.receive(this.makeBuffer(`write ${__filename}`));
   });
 
-  it('sends the correct event on file renaming', function() {
+  it('sends the correct event on file renaming', function () {
     const mock = this.mock;
-    mock.emitEvent = function(type, path, stat) {
+    mock.emitEvent = function (type, path, stat) {
       assert.equal(type, 'change');
       assert.equal(path, relative(mock.root, __filename));
       assert.ok(stat instanceof Stats);
@@ -98,9 +98,9 @@ describe('Watchexec handler', function() {
     this.mock.receive(this.makeBuffer(`rename ${__filename}`));
   });
 
-  it('sends the correct event on file deletion', function() {
+  it('sends the correct event on file deletion', function () {
     const mock = this.mock;
-    mock.emitEvent = function(type, path, stat) {
+    mock.emitEvent = function (type, path, stat) {
       assert.equal(type, 'delete');
       assert.equal(path, relative(mock.root, __filename));
       assert.ok(!stat);
@@ -108,7 +108,7 @@ describe('Watchexec handler', function() {
     this.mock.receive(this.makeBuffer(`remove ${__filename}`));
   });
 
-  it('handles multiline messages', function() {
+  it('handles multiline messages', function () {
     let count = 0;
     this.mock.emitEvent = () => count++;
 

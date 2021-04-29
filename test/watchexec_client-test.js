@@ -4,8 +4,8 @@
 const extractChanges = require('../src/watchexec_client');
 const assert = require('assert');
 
-describe('Watchexec client', function() {
-  it('handles single changes', function() {
+describe('Watchexec client', function () {
+  it('handles single changes', function () {
     // FILE UPDATE
     let env = { WATCHEXEC_WRITTEN_PATH: '/path/to/file' };
     assert.equal(extractChanges(env), 'write /path/to/file');
@@ -23,7 +23,7 @@ describe('Watchexec client', function() {
     assert.equal(extractChanges(env), 'create /path/to/file');
   });
 
-  it('handles multiple changes of the same type', function() {
+  it('handles multiple changes of the same type', function () {
     let env = {
       WATCHEXEC_WRITTEN_PATH: 'file:second/file',
       WATCHEXEC_COMMON_PATH: '/path/to/',
@@ -35,7 +35,7 @@ write /path/to/second/file`
     );
   });
 
-  it('handles multiple changes of multiple types', function() {
+  it('handles multiple changes of multiple types', function () {
     let env = {
       WATCHEXEC_WRITTEN_PATH: 'file:second/file',
       WATCHEXEC_REMOVED_PATH: 'deleted:second_deletion',

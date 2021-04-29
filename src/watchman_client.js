@@ -4,7 +4,7 @@ const watchman = require('fb-watchman');
 const captureExit = require('capture-exit');
 
 function values(obj) {
-  return Object.keys(obj).map(key => obj[key]);
+  return Object.keys(obj).map((key) => obj[key]);
 }
 
 /**
@@ -159,7 +159,7 @@ class WatchmanClient {
    */
   _handleClientAndCheck(resolve, reject) {
     this._createClientAndCheck().then(
-      value => {
+      (value) => {
         let resp = value.resp;
         let client = value.client;
 
@@ -225,7 +225,7 @@ class WatchmanClient {
         return;
       }
 
-      client.on('error', error => {
+      client.on('error', (error) => {
         client.removeAllListeners();
         reject(error);
       });
@@ -430,7 +430,7 @@ class WatchmanClient {
    * which subscription it belonged to).
    */
   _onError(error) {
-    values(this._watcherMap).forEach(watcherInfo =>
+    values(this._watcherMap).forEach((watcherInfo) =>
       watcherInfo.watchmanWatcher.handleErrorEvent(error)
     );
   }
@@ -455,7 +455,7 @@ class WatchmanClient {
 
     this._setupClient().then(
       () => {
-        let promises = oldWatcherInfos.map(watcherInfo =>
+        let promises = oldWatcherInfos.map((watcherInfo) =>
           this.subscribe(
             watcherInfo.watchmanWatcher,
             watcherInfo.watchmanWatcher.root
@@ -465,13 +465,13 @@ class WatchmanClient {
           () => {
             console.log('[sane.WatchmanClient]: Reconnected to watchman');
           },
-          error => {
+          (error) => {
             console.error(
               '[sane.WatchmanClient]: Reconnected to watchman, but failed to ' +
                 'reestablish at least one subscription, cannot continue'
             );
             console.error(error);
-            oldWatcherInfos.forEach(watcherInfo =>
+            oldWatcherInfos.forEach((watcherInfo) =>
               watcherInfo.watchmanWatcher.handleErrorEvent(error)
             );
             // XXX not sure whether to clear all _watcherMap instances here,
@@ -480,13 +480,13 @@ class WatchmanClient {
           }
         );
       },
-      error => {
+      (error) => {
         console.error(
           '[sane.WatchmanClient]: Lost connection to watchman, ' +
             'reconnect failed, cannot continue'
         );
         console.error(error);
-        oldWatcherInfos.forEach(watcherInfo =>
+        oldWatcherInfos.forEach((watcherInfo) =>
           watcherInfo.watchmanWatcher.handleErrorEvent(error)
         );
       }

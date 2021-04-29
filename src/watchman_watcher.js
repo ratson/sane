@@ -44,7 +44,7 @@ WatchmanWatcher.prototype.__proto__ = EventEmitter.prototype;
  *
  * @private
  */
-WatchmanWatcher.prototype._init = function() {
+WatchmanWatcher.prototype._init = function () {
   if (this._client) {
     this._client = null;
   }
@@ -55,11 +55,11 @@ WatchmanWatcher.prototype._init = function() {
   this._client = watchmanClient.getInstance(this.watchmanPath);
 
   return this._client.subscribe(this, this.root).then(
-    resp => {
+    (resp) => {
       this._handleWarning(resp);
       this.emit('ready');
     },
-    error => {
+    (error) => {
       this._handleError(error);
     }
   );
@@ -71,7 +71,7 @@ WatchmanWatcher.prototype._init = function() {
  * the watchman 'since' and 'relative_root' options, which are handled inside the
  * WatchmanClient.
  */
-WatchmanWatcher.prototype.createOptions = function() {
+WatchmanWatcher.prototype.createOptions = function () {
   let options = {
     fields: ['name', 'exists', 'new'],
   };
@@ -117,7 +117,7 @@ WatchmanWatcher.prototype.createOptions = function() {
  *
  * @param {Object} resp
  */
-WatchmanWatcher.prototype.handleErrorEvent = function(error) {
+WatchmanWatcher.prototype.handleErrorEvent = function (error) {
   this.emit('error', error);
 };
 
@@ -129,7 +129,7 @@ WatchmanWatcher.prototype.handleErrorEvent = function(error) {
  * @private
  */
 
-WatchmanWatcher.prototype.handleChangeEvent = function(resp) {
+WatchmanWatcher.prototype.handleChangeEvent = function (resp) {
   if (Array.isArray(resp.files)) {
     resp.files.forEach(this.handleFileChange, this);
   }
@@ -142,7 +142,7 @@ WatchmanWatcher.prototype.handleChangeEvent = function(resp) {
  * @private
  */
 
-WatchmanWatcher.prototype.handleFileChange = function(changeDescriptor) {
+WatchmanWatcher.prototype.handleFileChange = function (changeDescriptor) {
   let absPath;
   let relativePath;
 
@@ -190,7 +190,7 @@ WatchmanWatcher.prototype.handleFileChange = function(changeDescriptor) {
  * @private
  */
 
-WatchmanWatcher.prototype.emitEvent = function(
+WatchmanWatcher.prototype.emitEvent = function (
   eventType,
   filepath,
   root,
@@ -207,7 +207,7 @@ WatchmanWatcher.prototype.emitEvent = function(
  * @private
  */
 
-WatchmanWatcher.prototype.close = function(callback) {
+WatchmanWatcher.prototype.close = function (callback) {
   this._client.closeWatcher(this);
   callback && callback(null, true);
 };
@@ -220,7 +220,7 @@ WatchmanWatcher.prototype.close = function(callback) {
  * @private
  */
 
-WatchmanWatcher.prototype._handleError = function(error) {
+WatchmanWatcher.prototype._handleError = function (error) {
   if (error != null) {
     this.emit('error', error);
     return true;
@@ -236,7 +236,7 @@ WatchmanWatcher.prototype._handleError = function(error) {
  * @private
  */
 
-WatchmanWatcher.prototype._handleWarning = function(resp) {
+WatchmanWatcher.prototype._handleWarning = function (resp) {
   if ('warning' in resp) {
     if (RecrawlWarning.isRecrawlWarningDupe(resp.warning)) {
       return true;

@@ -37,9 +37,9 @@ function _messageHandler(data) {
   data
     .toString()
     .split(EOL)
-    .filter(str => str.trim().length)
-    .filter(str => messageRegexp.test(str))
-    .map(line => {
+    .filter((str) => str.trim().length)
+    .filter((str) => messageRegexp.test(str))
+    .map((line) => {
       const [, command, path] = [...line.match(messageRegexp)];
       return [command, path];
     })

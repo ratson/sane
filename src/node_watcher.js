@@ -217,10 +217,10 @@ module.exports = class NodeWatcher extends EventEmitter {
     let found = false;
     let closest = { mtime: 0 };
     let c = 0;
-    Object.keys(this.dirRegistery[dir]).forEach(function(file, i, arr) {
+    Object.keys(this.dirRegistery[dir]).forEach(function (file, i, arr) {
       fs.lstat(
         path.join(dir, file),
-        function(error, stat) {
+        function (error, stat) {
           if (found) {
             return;
           }
@@ -260,7 +260,7 @@ module.exports = class NodeWatcher extends EventEmitter {
       this.detectChangedFile(
         dir,
         event,
-        function(actualFile) {
+        function (actualFile) {
           if (actualFile) {
             this.processChange(dir, event, actualFile);
           }
@@ -286,7 +286,7 @@ module.exports = class NodeWatcher extends EventEmitter {
 
     fs.lstat(
       fullPath,
-      function(error, stat) {
+      function (error, stat) {
         if (error && error.code !== 'ENOENT') {
           this.emit('error', error);
         } else if (!error && stat.isDirectory()) {
@@ -342,7 +342,7 @@ module.exports = class NodeWatcher extends EventEmitter {
     }
     clearTimeout(this.changeTimers[key]);
     this.changeTimers[key] = setTimeout(
-      function() {
+      function () {
         delete this.changeTimers[key];
         if (type === ADD_EVENT && stat.isDirectory()) {
           // Recursively emit add events and watch for sub-files/folders

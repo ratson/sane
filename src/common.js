@@ -25,7 +25,7 @@ exports.ALL_EVENT = 'all';
  * @public
  */
 
-exports.assignOptions = function(watcher, opts) {
+exports.assignOptions = function (watcher, opts) {
   opts = opts || {};
   watcher.globs = opts.glob || [];
   watcher.dot = opts.dot || false;
@@ -54,7 +54,7 @@ exports.assignOptions = function(watcher, opts) {
  * @public
  */
 
-exports.isFileIncluded = function(globs, dot, doIgnore, relativePath) {
+exports.isFileIncluded = function (globs, dot, doIgnore, relativePath) {
   if (doIgnore(relativePath)) {
     return false;
   }
@@ -74,7 +74,7 @@ exports.isFileIncluded = function(globs, dot, doIgnore, relativePath) {
  * @public
  */
 
-exports.recReaddir = function(
+exports.recReaddir = function (
   dir,
   dirCallback,
   fileCallback,
@@ -83,7 +83,7 @@ exports.recReaddir = function(
   ignored
 ) {
   walker(dir)
-    .filterDir(currentDir => !anymatch(ignored, currentDir))
+    .filterDir((currentDir) => !anymatch(ignored, currentDir))
     .on('dir', normalizeProxy(dirCallback))
     .on('file', normalizeProxy(fileCallback))
     .on('error', errorCallback)
