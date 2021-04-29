@@ -52,6 +52,6 @@
     "access": "public"
   },
   "mocha": {
-    "timeout": 5000
+    "timeout": 10000
   }
 }
